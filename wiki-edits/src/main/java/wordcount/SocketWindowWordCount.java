@@ -13,11 +13,11 @@ public class SocketWindowWordCount {
     public static void main(String[] args) throws Exception {
         //1.获取port
         ParameterTool parameterTool = ParameterTool.fromArgs(args);
-        int port = parameterTool.getInt("port");
+//        int port = parameterTool.getInt("port");
         //2.获取execution enviroment
         StreamExecutionEnvironment sse = StreamExecutionEnvironment.getExecutionEnvironment();
         //3.获取输入流
-        DataStreamSource<String> text = sse.socketTextStream("localhost", port, "\n");
+        DataStreamSource<String> text = sse.socketTextStream("localhost", 9000, "\n");
         //4.按空格拆分词，分组 窗口统计
         DataStream<WordWithCount> windowCount = text
                 .flatMap(new FlatMapFunction<String, WordWithCount>() {
