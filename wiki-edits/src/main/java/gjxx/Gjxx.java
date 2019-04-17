@@ -3,7 +3,13 @@ package gjxx;
 /**
  * Created by denglj on 2019/4/14.
  */
-public class Gjxx {
+public class Gjxx implements Comparable<Gjxx>{
+
+    @Override
+    public int compareTo(Gjxx gjxx) {
+        return gjxx.getHdfssj().compareTo(this.hdfssj);
+    }
+
     private String hdfssj;
     private String xm;
     private String sfzhm;
