@@ -41,7 +41,7 @@ public class SlidingWindowDemo {
                     }
                 });
 
-        dataStream.print("TumblingWindowDemo");
+        dataStream.print("SlidingWindowDemo");
         environment.execute();
 
     }

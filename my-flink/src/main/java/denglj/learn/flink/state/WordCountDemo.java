@@ -37,9 +37,7 @@ public class WordCountDemo {
                     @Override
                     public void flatMap(String s, Collector<WordCount> collector) throws Exception {
                         for (String s1 : s.split(" ")) {
-                            WordCount wordCount = new WordCount();
-                            wordCount.setCount(1);
-                            wordCount.setWord(s1);
+                            WordCount wordCount = new WordCount(s1, 1);
                             collector.collect(wordCount);
                         }
                     }

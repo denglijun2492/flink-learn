@@ -38,8 +38,8 @@ public class EventTimeWatermarkDemo {
 
         //输入格式：{"sfzhm":"111","hdfssj":"20190101000000"}
         DataStream<String> dataStream = environment.socketTextStream("localhost", 9000)
-//                .assignTimestampsAndWatermarks(new BoundedOutOfOrdernessGenerator())
-                .assignTimestampsAndWatermarks(new TimeLagWatermarkGenerator())
+                .assignTimestampsAndWatermarks(new BoundedOutOfOrdernessGenerator())
+//                .assignTimestampsAndWatermarks(new TimeLagWatermarkGenerator())
                 .map(s -> JSON.parseObject(s, Gjxx.class))
                 .keyBy("sfzhm")
                 .window(TumblingEventTimeWindows.of(Time.seconds(5)))
@@ -47,7 +47,7 @@ public class EventTimeWatermarkDemo {
                     @Override
                     public void process(Tuple tuple, Context context, Iterable<Gjxx> elements, Collector<String> out) throws Exception {
                         String s = "";
-                        String sfzhm = "";
+                        String sfzhm =  "";
                         for (Gjxx gjxx : elements) {
                             s += gjxx.getHdfssj() + ",";
                             sfzhm = gjxx.getSfzhm();

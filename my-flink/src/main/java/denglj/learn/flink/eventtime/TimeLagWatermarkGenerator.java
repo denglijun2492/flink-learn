@@ -17,7 +17,7 @@ public class TimeLagWatermarkGenerator implements AssignerWithPeriodicWatermarks
 
     final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
-    private final long maxTimeLag = 10*1000;
+    private final long maxTimeLag = 0*1000;
 
     @Nullable
     @Override
