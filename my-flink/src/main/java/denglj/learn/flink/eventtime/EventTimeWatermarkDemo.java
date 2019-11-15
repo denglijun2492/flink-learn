@@ -37,7 +37,7 @@ public class EventTimeWatermarkDemo {
         environment.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
         //输入格式：{"sfzhm":"111","hdfssj":"20190101000000"}
-        DataStream<String> dataStream = environment.socketTextStream("localhost", 9000)
+        DataStream<String> dataStream = environment.socketTextStream("localhost", 9999)
                 .assignTimestampsAndWatermarks(new BoundedOutOfOrdernessGenerator())
 //                .assignTimestampsAndWatermarks(new TimeLagWatermarkGenerator())
                 .map(s -> JSON.parseObject(s, Gjxx.class))

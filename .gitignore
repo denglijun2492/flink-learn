@@ -1,4 +1,6 @@
 */.idea/
 my-flink/target/
+my-hotword/target/
 *.iml
 tool
+my-flink/dependency-reduced-pom.xml

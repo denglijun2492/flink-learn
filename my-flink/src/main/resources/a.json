@@ -1,0 +1,67 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "type": "Source: Custom Source",
+      "pact": "Data Source",
+      "contents": "Source: Custom Source",
+      "parallelism": 6
+    },
+    {
+      "id": 2,
+      "type": "Timestamps/Watermarks",
+      "pact": "Operator",
+      "contents": "Timestamps/Watermarks",
+      "parallelism": 2,
+      "predecessors": [
+        {
+          "id": 1,
+          "ship_strategy": "REBALANCE",
+          "side": "second"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "Map",
+      "pact": "Operator",
+      "contents": "Map",
+      "parallelism": 1,
+      "predecessors": [
+        {
+          "id": 2,
+          "ship_strategy": "REBALANCE",
+          "side": "second"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "Window(TumblingEventTimeWindows(120000), EventTimeTrigger, ProcessWindowFunction$1)",
+      "pact": "Operator",
+      "contents": "Window(TumblingEventTimeWindows(120000), EventTimeTrigger, ProcessWindowFunction$1)",
+      "parallelism": 1,
+      "predecessors": [
+        {
+          "id": 3,
+          "ship_strategy": "HASH",
+          "side": "second"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "Sink: Print to Std. Out",
+      "pact": "Data Sink",
+      "contents": "Sink: Print to Std. Out",
+      "parallelism": 1,
+      "predecessors": [
+        {
+          "id": 5,
+          "ship_strategy": "FORWARD",
+          "side": "second"
+        }
+      ]
+    }
+  ]
+}
